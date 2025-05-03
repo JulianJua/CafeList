@@ -10,7 +10,6 @@ void menu_received() {
     cout << "          3. Exit" << endl;
     cout << endl;
 
-}
 void beverages_option(){
     cout << endl;
     cout << "          Please select a category: " << endl;
