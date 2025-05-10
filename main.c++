@@ -183,7 +183,7 @@ int main() {
                 backToMain = false;
                 break;
                 
-            case 3: 
+            case 3:     
                 end();
                 break;
                 
