@@ -1,4 +1,3 @@
-// LinkedListTest.cpp - Updated for main directory location
 #include <iostream>
 #include <string>
 #include "LinkedList.h"
@@ -75,7 +74,6 @@ void testLinkedListRemove() {
     
     cout << "PASSED" << endl;
     
-    // Clean up
     menu.clear();
 }
 
