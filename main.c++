@@ -1,114 +1,106 @@
 #include <iostream>
+#include "LinkedList.h"
+#include "MenuItem.h"
+#include "Food.h"
+#include "Beverage.h"
+
 using namespace std;
 
+// ========== Menus ==========
+
 void menu_received() {
-    cout << endl;
-    cout << "          Here is our menu: " << endl;
+    cout << "\n          Here is our menu: " << endl;
     cout << "          1. Beverages" << endl;
     cout << "          2. Food" << endl;
-    cout << "          3. Exit" << endl;
-    cout << endl;
-} 
+    cout << "          3. Checkout & Exit" << endl;
+}
 
-void beverages_option(){
-    cout << endl;
-    cout << "          Please select a category: " << endl;
+void beverages_option() {
+    cout << "\n          Please select a category: " << endl;
     cout << "          1. Hot Beverages" << endl;
     cout << "          2. Cold Beverages" << endl;
     cout << "          3. Non-Caffeinated" << endl;
     cout << "          4. Back to Main Menu" << endl;
-    cout << endl;
 }
 
-void food_option(){
-    cout << endl;
-    cout << "          Please select a category: " << endl;
+void food_option() {
+    cout << "\n          Please select a category: " << endl;
     cout << "          1. Pastries" << endl;
     cout << "          2. Sandwiches" << endl;
     cout << "          3. Snacks" << endl;
     cout << "          4. Back to Main Menu" << endl;
-    cout << endl;
 }
 
-void hot_beverages_menu() {
-    cout << endl;
-    cout << "---------- Hot Beverages -----------" << endl;
-    cout << endl;
-    cout << "          1. Coffee" << endl;
-    cout << "          2. Espresso" << endl;
-    cout << "          3. Latte" << endl;
-    cout << "          4. Caramel Macchiato" << endl;
-    cout << "          5. Back to Beverages Menu" << endl;
+void displayItemChoices(LinkedList<std::string>& items) {
+    LinkedList<std::string>::Iterator it = items.begin();
+    int index = 1;
+    while (it.hasNext()) {
+        cout << "          " << index << ". " << it.next() << endl;
+        index++;
+    }
+    cout << "          " << index << ". Back\n";
 }
 
-void cold_beverages_menu() {
-    cout << endl;
-    cout << "---------- Cold Beverages ----------" << endl;
-    cout << endl;
-    cout << "          1. Iced Coffee" << endl;
-    cout << "          2. Iced Latte" << endl;
-    cout << "          3. Iced Caramel Macchiato" << endl;
-    cout << "          5. Back to Beverages Menu" << endl;
+// ========== Add Menu Items ==========
+
+void addMenuItems(LinkedList<MenuItem*>& masterMenu) {
+    masterMenu.addBack(new Beverage("Coffee", 3.50, true, "Small", 80));
+    masterMenu.addBack(new Beverage("Espresso", 3.00, true, "Small", 85));
+    masterMenu.addBack(new Beverage("Latte", 4.50, true, "Medium", 75));
+    masterMenu.addBack(new Beverage("Caramel Macchiato", 5.00, true, "Large", 78));
+    masterMenu.addBack(new Beverage("Iced Coffee", 3.75, true, "Large", 40));
+    masterMenu.addBack(new Beverage("Iced Latte", 4.25, true, "Large", 42));
+    masterMenu.addBack(new Beverage("Tea", 2.50, true, "Medium", 65));
+    masterMenu.addBack(new Beverage("Berry Smoothie", 4.95, true, "Medium", 5));
+
+    masterMenu.addBack(new Food("Croissant", 3.25, true, nullptr, 0, 300));
+    masterMenu.addBack(new Food("Blueberry Scone", 3.75, true, nullptr, 0, 320));
+    masterMenu.addBack(new Food("Muffin", 2.95, true, nullptr, 0, 310));
+    masterMenu.addBack(new Food("Turkey Sandwich", 6.99, true, nullptr, 0, 550));
+    masterMenu.addBack(new Food("Ham Sandwich", 6.50, true, nullptr, 0, 540));
+    masterMenu.addBack(new Food("Veggie Sandwich", 5.99, true, nullptr, 0, 500));
+    masterMenu.addBack(new Food("Chips", 1.50, true, nullptr, 0, 200));
+    masterMenu.addBack(new Food("Pretzels", 1.75, true, nullptr, 0, 210));
 }
 
-void non_caffeinated_menu() {
-    cout << endl;
-    cout << "---------- Non-Caffeinated ----------" << endl;
-    cout << endl;
-    cout << "          1. Tea" << endl;
-    cout << "          2. Lemon Tea" << endl;
-    cout << "          3. Berry Smoothie" << endl;
-    cout << "          5. Back to Beverages Menu" << endl;
-}
-
-void pastries_menu() {
-    cout << endl;
-    cout << "------------- Pastries -------------" << endl;
-    cout << endl;
-    cout << "          1. Croissant" << endl;
-    cout << "          2. Blueberry Scone" << endl;
-    cout << "          3. Muffin" << endl;
-    cout << "          4. Matcha White Chocolate Macadamia Nut Cookie " << endl;
-    // ... more options
-    cout << "          5. Back to Food Menu" << endl;
-}
-
-void sandwiches_menu(){
-    cout << endl;
-    cout << "------------- Sandwiches ------------" << endl;
-    cout << endl;
-    cout << "          1. Turkey" << endl;
-    cout << "          2. Ham" << endl;
-    cout << "          3. Salami" << endl;
-    cout << "          4. Veggie" << endl;
-    cout << "          5. Back to Food Menu" << endl;
-    cout << endl;
-}
-
-void snack_menu(){
-    cout << endl;
-    cout << "------------- Snacks ----------------" << endl;
-    cout << endl;
-    cout << "          1. Chips" << endl;
-    cout << "          2. Crackers" << endl;
-    cout << "          3. Pretzels" << endl;
-    cout << "          4. Chex-mix" << endl;
-    cout << "          5. Back to Food Menu" << endl;
-    cout << endl;
-}
-
-void end() {
-    cout << endl;
-    cout << "------------------------------------" << endl;
-    cout << "      Thank you and come again!" << endl;
-    cout << "------------------------------------" << endl;
-}
+// ========== Main ==========
 
 int main() {
-    int userChoice;
-    int beverageChoice;
-    int foodChoice;
-    int foodSubChoice;
+    LinkedList<MenuItem*> masterMenu;
+    LinkedList<MenuItem*> userOrder;
+
+    addMenuItems(masterMenu);
+
+    // LinkedLists for categories
+    LinkedList<std::string> hotDrinks;
+    hotDrinks.addBack("Coffee");
+    hotDrinks.addBack("Espresso");
+    hotDrinks.addBack("Latte");
+    hotDrinks.addBack("Caramel Macchiato");
+
+    LinkedList<std::string> coldDrinks;
+    coldDrinks.addBack("Iced Coffee");
+    coldDrinks.addBack("Iced Latte");
+
+    LinkedList<std::string> nonCaff;
+    nonCaff.addBack("Tea");
+    nonCaff.addBack("Berry Smoothie");
+
+    LinkedList<std::string> pastries;
+    pastries.addBack("Croissant");
+    pastries.addBack("Blueberry Scone");
+    pastries.addBack("Muffin");
+
+    LinkedList<std::string> sandwiches;
+    sandwiches.addBack("Turkey Sandwich");
+    sandwiches.addBack("Ham Sandwich");
+    sandwiches.addBack("Veggie Sandwich");
+
+    LinkedList<std::string> snacks;
+    snacks.addBack("Chips");
+    snacks.addBack("Pretzels");
+
+    int userChoice, subChoice;
     bool backToMain = false;
 
     cout << "----- Welcome to The Cozy Bean -----" << endl;
@@ -119,77 +111,107 @@ int main() {
         cin >> userChoice;
 
         switch (userChoice) {
-            case 1: // Beverages
+            case 1: { // Beverages
                 do {
                     beverages_option();
                     cout << "Enter your choice: ";
-                    cin >> beverageChoice;
-                    
-                    switch (beverageChoice) {
-                        case 1: // Hot Beverages
-                            hot_beverages_menu();
-                            cout << "Enter your choice: ";
-                            cin >> beverageChoice;
-                            break;
-                        case 2: // Cold Beverages
-                            cold_beverages_menu();
-                            cout << "Enter your choice: ";
-                            cin >> beverageChoice;
-                            break;
-                        case 3: // Non-Caffeinated
-                            non_caffeinated_menu();
-                            cout << "Enter your choice: ";
-                            cin >> beverageChoice;
-                            break;
-                        case 4: // Back to Main Menu
-                            backToMain = true;
-                            break;
-                        default:
-                            cout << "Invalid choice. Please try again." << endl;
+                    cin >> subChoice;
+
+                    LinkedList<std::string>* currentList = nullptr;
+                    int maxChoice = 0;
+
+                    if (subChoice == 1) {
+                        currentList = &hotDrinks;
+                        maxChoice = 4;
+                    } else if (subChoice == 2) {
+                        currentList = &coldDrinks;
+                        maxChoice = 2;
+                    } else if (subChoice == 3) {
+                        currentList = &nonCaff;
+                        maxChoice = 2;
+                    } else {
+                        break;
                     }
-                } while (beverageChoice != 4 && !backToMain);
-                backToMain = false;
+
+                    if (currentList != nullptr) {
+                        displayItemChoices(*currentList);
+                        cin >> subChoice;
+                        if (subChoice >= 1 && subChoice <= maxChoice) {
+                            std::string itemName = currentList->get(subChoice - 1);
+                            MenuItem* item = masterMenu.search(itemName);
+                            if (item != nullptr) {
+                                userOrder.addBack(item);
+                                cout << "Added: " << item->getName() << "\n";
+                            }
+                        }
+                    }
+                } while (subChoice != 4);
                 break;
-                
-            case 2: // Food
+            }
+
+            case 2: { // Food
                 do {
                     food_option();
                     cout << "Enter your choice: ";
-                    cin >> foodChoice;
-                    
-                    switch (foodChoice) {
-                        case 1: // Pastries
-                            pastries_menu();
-                            cout << "Enter your choice: ";
-                            cin >> foodSubChoice;
-                            break;
-                        case 2: // Sandwiches
-                            sandwiches_menu();
-                            cout << "Enter your choice: ";
-                            cin >> foodSubChoice;
-                            break;
-                        case 3: // Snacks
-                            snack_menu();
-                            cout << "Enter your choice: ";
-                            cin >> foodSubChoice;
-                            break;
-                        case 4: 
-                            backToMain = true;
-                            break;
-                        default:
-                            cout << "Invalid choice. Please try again." << endl;
+                    cin >> subChoice;
+
+                    LinkedList<std::string>* currentList = nullptr;
+                    int maxChoice = 0;
+
+                    if (subChoice == 1) {
+                        currentList = &pastries;
+                        maxChoice = 3;
+                    } else if (subChoice == 2) {
+                        currentList = &sandwiches;
+                        maxChoice = 3;
+                    } else if (subChoice == 3) {
+                        currentList = &snacks;
+                        maxChoice = 2;
+                    } else {
+                        break;
                     }
-                } while (foodChoice != 4 && !backToMain);
-                backToMain = false;
+
+                    if (currentList != nullptr) {
+                        displayItemChoices(*currentList);
+                        cin >> subChoice;
+                        if (subChoice >= 1 && subChoice <= maxChoice) {
+                            std::string itemName = currentList->get(subChoice - 1);
+                            MenuItem* item = masterMenu.search(itemName);
+                            if (item != nullptr) {
+                                userOrder.addBack(item);
+                                cout << "Added: " << item->getName() << "\n";
+                            }
+                        }
+                    }
+                } while (subChoice != 4);
                 break;
+            } // Added closing brace here
                 
-            case 3:     
-                end();
+            case 3: { // Checkout & Exit
+                cout << "\n----- Your Order Summary -----\n";
+                
+                if (userOrder.getHead() == nullptr) {
+                    cout << "Your order is empty.\n";
+                } else {
+                    double total = 0.0;
+                    Node<MenuItem*>* current = userOrder.getHead();
+                    while (current != nullptr) {
+                        MenuItem* item = current->getData();
+                        cout << item->getName() << " - $" << item->getPrice() << endl;
+                        total += item->getPrice();
+                        current = current->getNext();
+                    }
+                    cout << "Total: $" << total << endl;
+                }
+                
+                cout << "Thank you for visiting The Cozy Bean!\n";
                 break;
-                
+            }
+
             default:
-                cout << "Invalid choice. Please try again." << endl;
+                cout << "Invalid choice.\n";
         }
+
     } while (userChoice != 3);
 
     return 0;
