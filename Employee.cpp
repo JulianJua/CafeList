@@ -7,7 +7,7 @@ Employee::Employee(std::string name, std::string id, std::string workID, std::st
     this->name = name;
     this->id = id;
     this->workID = workID;
-    this->workUniform = workUniform
+    this->workUniform = workUniform;
 }
 
 void Employee::clockIn() const {
