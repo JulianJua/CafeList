@@ -3,6 +3,7 @@
 
 #include "LinkedList.h"
 #include "MenuItem.h"
+#include <string>
 
 class Menu {
 private:
@@ -14,6 +15,11 @@ public:
     MenuItem* searchItems(std::string name);
     void sortByPrice();
     void displayMenu();
+    
+    void loadFromFile(std::string filename);
+    void saveToFile(std::string filename);
+
+    LinkedList<MenuItem*>& getItems() { return items; }
 };
 
 #endif

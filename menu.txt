@@ -1,0 +1,16 @@
+Beverage,Coffee,3.50,1,Small,80
+Beverage,Espresso,3.00,1,Small,85
+Beverage,Latte,4.50,1,Medium,75
+Beverage,Caramel Macchiato,5.00,1,Large,78
+Beverage,Iced Coffee,3.75,1,Large,40
+Beverage,Iced Latte,4.25,1,Large,42
+Beverage,Tea,2.50,1,Medium,65
+Beverage,Berry Smoothie,4.95,1,Medium,5
+Food,Croissant,3.25,1,300,0
+Food,Blueberry Scone,3.75,1,320,0
+Food,Muffin,2.95,1,310,0
+Food,Turkey Sandwich,6.99,1,550,0
+Food,Ham Sandwich,6.50,1,540,0
+Food,Veggie Sandwich,5.99,1,500,0
+Food,Chips,1.50,1,200,0
+Food,Pretzels,1.75,1,210,0
