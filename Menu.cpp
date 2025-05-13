@@ -58,7 +58,6 @@ void Menu::loadFromFile(std::string filename) {
     }
     
     file.close();
-    std::cout << "Menu loaded from file: " << filename << std::endl;
 }
 
 void Menu::saveToFile(std::string filename) {
@@ -91,5 +90,4 @@ void Menu::saveToFile(std::string filename) {
     }
     
     file.close();
-    std::cout << "Menu saved to file: " << filename << std::endl;
 }
