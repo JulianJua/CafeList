@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -std=c++11
 
 TARGET = main
 
-SOURCES = Bartista.cpp Beverage.cpp Cashier.cpp CafeApp.cpp Employee.cpp Food.cpp \
+SOURCES = Bartista.cpp Beverage.cpp Cashier.cpp Employee.cpp Food.cpp \
           Manager.cpp Menu.cpp MenuItem.cpp Node.cpp Person.cpp main.c++
 
 OBJECTS = $(patsubst %.cpp,%.o,$(filter %.cpp,$(SOURCES))) \

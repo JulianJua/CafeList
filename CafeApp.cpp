@@ -22,7 +22,7 @@ void CafeApp::initializeCategoryLists() {
     nonCaff.addBack("Tea");
     nonCaff.addBack("Berry Smoothie");
     
-                                                                               pastries.addBack("Croissant");
+    pastries.addBack("Croissant");
     pastries.addBack("Blueberry Scone");
     pastries.addBack("Muffin");
     
@@ -87,6 +87,7 @@ void CafeApp::handleBeverages() {
             currentList = &nonCaff;
             maxChoice = 2;
         } else if (subChoice == 4) {
+            // Back to main menu
             break;
         } else {
             cout << "Invalid choice.\n";
@@ -187,7 +188,6 @@ void CafeApp::checkout() {
         cout << "Total: $" << fixed << setprecision(2) << total << endl;
     }
     
-    // Save menu back to file
     cafeMenu.saveToFile("menu_updated.txt");
     
     cout << "Thank you for visiting The Cozy Bean!\n";
